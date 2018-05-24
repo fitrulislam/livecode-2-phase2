@@ -5,10 +5,11 @@
         <v-layout align-center justify-center>
           <v-flex xs12 sm8 md4>
             <v-card class="elevation-12">
-              <v-toolbar dark color="silver">
+              <span v-if="status == false">Username/Email has taken</span>
+              <v-toolbar color="silver">
                 <v-toolbar-title>Register</v-toolbar-title>
                 <v-spacer></v-spacer>
-                <router-link to="/signin" style="color: white;">Back To Sign In</router-link>
+                <router-link to="/signin">Back To Sign In</router-link>
               </v-toolbar>
               <v-card-text>
                 <v-form>
@@ -109,7 +110,8 @@ export default {
         v => this.confirmPasswordStatus === true || 'Your confirm password is not match with your password'
       ],
       e1: true,
-      e2: true
+      e2: true,
+      status: true
     }
   },
   watch: {
@@ -202,10 +204,11 @@ export default {
         .then(response => {
           localStorage.setItem('token', response.data.token)
           localStorage.setItem('status', 'connected')
-          this.$router.push('dashboard')
+          this.$router.push('/')
         })
         .catch(err => {
           console.log(err)
+          this.status = false
         })
     }
   }
