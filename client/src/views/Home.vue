@@ -6,7 +6,7 @@
       <v-spacer></v-spacer>
       <v-btn v-show="status == false" flat color="black" @click="toLogin">Sign In</v-btn>
       <v-btn v-show="status == true" flat color="black" @click.stop="dialog = true">Add Book</v-btn>
-      <v-btn v-show="status == true" flat color="black" @click="toMyQ">My Question</v-btn>
+      <v-btn v-show="status == true" flat color="black">My Book</v-btn>
       <v-btn v-show="status == true" flat color="black" @click="signout">Sign Out</v-btn>
     </v-toolbar>
     <v-content>
@@ -14,7 +14,7 @@
         <v-list two-line>
           <h2>&nbsp;&nbsp;&nbsp;Book List</h2>
           <div v-for="(book, index) in books" :key="index">
-            <!-- <router-link :to="{ name: 'bookDetail', params: {id: question._id, question} }" style="color: black;"> -->
+            <router-link :to="{ name: 'bookdetail', params: {id: book._id} }" style="color: black;">
               <v-list-tile @click="tes">
                 <v-list-tile-avatar>
                   <img :src="book.img">
@@ -25,7 +25,7 @@
                   <v-list-tile-sub-title>Publisher: {{ book.publisher }}</v-list-tile-sub-title>
                 </v-list-tile-content>
               </v-list-tile>
-            <!-- </router-link> -->
+            </router-link>
             <v-divider></v-divider>
           </div>
         </v-list>
@@ -57,10 +57,7 @@
                 type="text"
                 required>
               </v-text-field>
-              <input
-                type="file"
-                @change="getFile">
-              </input>
+              <input type="file" @change="getFile">
             </v-form>
           </v-card-text>
           <v-card-actions>
@@ -161,9 +158,6 @@ export default {
     },
     toLogin () {
       this.$router.push('/signin')
-    },
-    toMyQ () {
-      this.$router.push('/myquestion')
     },
     signout () {
       this.$store.commit('signout')

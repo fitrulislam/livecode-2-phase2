@@ -77,19 +77,36 @@ module.exports = {
       })
   },
   delete: (req,res) => {
-    Book.findByIdAndRemove({
-      _id: req.params.id
+    let decoded = jwt.verify(req.headers.token, secret)
+    Book.findOne({
+      _id:req.params.id
     })
-    .then(book => {
-      res.status(200).json({
-        message: `book deleted`,
-        data: book
+      .then(book => {
+        if (decoded.id == book.userId) {
+          Book.findByIdAndRemove({
+            _id: req.params.id
+          })
+          .then(book => {
+            res.status(200).json({
+              message: `book deleted`,
+              data: book
+            })
+          })
+          .catch(err => {
+            res.status(500).json({
+              message: `server error`
+            })
+          })
+        } else {
+          res.status(401).json({
+            message: 'you are not owner of this book'
+          })
+        }
       })
-    })
-    .catch(err => {
-      res.status(500).json({
-        message: `server error`
+      .catch(err => {
+        res.status(500).json({
+          message: 'something went wrong'
+        })
       })
-    })
   }
 }

@@ -12,8 +12,4 @@ const reviewSchema = new Schema({
 
 let Review = mongoose.model('Review', reviewSchema)
 
-// reviewSchema.post('findByIdAndRemove', function (next) {
-//   Book.find()
-// })
-
 module.exports = Review

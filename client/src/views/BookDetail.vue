@@ -1,79 +1,71 @@
 <template>
   <v-app light>
-    <v-toolbar color="danger" dark flat fixed app>
-      <v-icon>fas fa-question</v-icon>
-      <v-toolbar-title class="back" @click="backToHome">Hacktiv OverFlow</v-toolbar-title>
+    <v-toolbar color="silve" flat fixed app>
+      <v-icon>fas fa-book</v-icon>
+      <v-toolbar-title class="back" @click="backToHome">Book RView</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn v-show="status == false" flat color="white" @click="toLogin">Sign In</v-btn>
-      <v-btn v-show="status == true" flat color="white" @click="toMyQ">My Question</v-btn>
-      <v-btn v-show="status == true" flat color="white" @click="signout">Sign Out</v-btn>
+      <v-btn v-show="status == false" flat @click="toLogin">Sign In</v-btn>
+      <v-btn v-show="status == true" flat>My Book</v-btn>
+      <v-btn v-show="status == true" flat @click="signout">Sign Out</v-btn>
     </v-toolbar>
     <v-content>
       <v-layout column wrap>
         <v-container>
-          <v-layout row wrap align-center>
-            <v-flex xs1 md1>
-              <div class="arrow-up" @click="questionVote(question._id, 'plus')"></div>
-                &nbsp;&nbsp;&nbsp;{{ question.totalVote }}
-              <div class="arrow-down" @click="questionVote(question._id, 'minus')"></div>
-            </v-flex>
-            <v-flex xs11 md11>
-              <h3>{{ question.title }}</h3>
-              <h4>{{ question.content }} - {{ question.userName }}</h4>
-            </v-flex>
-          </v-layout><br>
-          <v-layout>
-            <v-flex xs1 md1>
-            </v-flex>
-            <v-flex xs11 md11>
-              <p v-for="(comment,index) in question.comments" :key="index">
-                {{ comment.comment }} - {{ comment.username }}
-              </p>
-              <v-form v-show="status == true" @submit.prevent="addCommentForQuestion(question._id)">
-                <v-text-field label="add comment" type="text" v-model="qComment"></v-text-field>
-                <button type="submit" style="display: none;">tes</button>
-              </v-form>
-            </v-flex>
+          <v-layout wrap align-center>
+            <img :src="book.img" alt="image" style="max-width: 300px;">
+            <v-list-tile-title><h3>Title: {{ book.title }}</h3></v-list-tile-title>
+            <v-list-tile-sub-title><h4>Author: {{ book.author }}</h4></v-list-tile-sub-title>
+            <v-list-tile-sub-title><h4>Publisher: {{ book.publisher }}</h4></v-list-tile-sub-title>
+            <v-btn small color="error" @click.stop="dialog = true">Delete this book</v-btn>
+            <v-dialog v-model="dialog2" max-width="500px">
+                <v-card>
+                  <v-card-text>
+                    <h2>You are not owner of this book</h2>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-btn color="danger" flat @click.stop="dialog2 = false">close</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            <v-dialog v-model="dialog" max-width="500px">
+                <v-card>
+                  <v-card-text>
+                    <h2>DELETE THIS BOOK?</h2>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-btn color="danger" flat @click.stop="dialog = false">Cancel</v-btn>
+                    <v-spacer></v-spacer>
+                    <v-btn color="error" flat @click="deleteBook(book._id)">Delete</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            <v-dialog v-model="dialog3" max-width="500px">
+                <v-card>
+                  <v-card-text>
+                    <h2>You just can give 1 review</h2>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-btn color="danger" flat @click.stop="dialog3 = false">Cancel</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
           </v-layout>
         </v-container>
         <v-container>
-          <div v-for="(answer, index) in question.answers" :key="index">
+          <h3>Reviews</h3>
+          <div v-for="(review, index) in book.reviews" :key="index">
             <v-layout row wrap align-center>
-              <v-flex xs1 md1>
-                <div class="arrow-up" @click="answerVote(answer._id, 'plus')"></div>
-                  &nbsp;&nbsp;&nbsp;{{ answer.totalVote }}
-                <div class="arrow-down" @click="answerVote(answer._id, 'minus')"></div>
-              </v-flex>
-              <v-flex xs11 md11>
-                <h4>{{ answer.content }} - {{ answer.userName }}</h4>
-              </v-flex>
-            </v-layout>
-            <v-layout row wrap align-center>
-              <v-flex xs1 md1>
-              </v-flex>
-              <v-flex xs11 md11>
-                <p v-for="(comment,index) in answer.comments" :key="index">
-                  {{ comment.comment }} - {{ comment.username }}
-                </p>
-                <v-form v-show="status == true" @submit.prevent="addCommentForAnswer">
-                  <v-text-field label="add comment" type="text" id="comment" name="aComment"></v-text-field>
-                  <button type="submit" style="display: none;" @click="addAnswerId(answer._id)">tes</button>
-                </v-form>
-              </v-flex>
+              <h4>{{ review.content }} - {{ review.userName }}</h4>
             </v-layout>
           </div>
-          <v-layout v-show="status == true" row wrap align-center>
-            <v-flex xs1 md1>
-            </v-flex>
-            <v-flex xs11 md11>
-              <v-text-field
-                label="add answer"
-                multi-line
-                v-model="answer"
-              ></v-text-field>
-              <v-btn small color="primary" @click="addAnswerToDB(question._id)">Add Answer</v-btn>
-            </v-flex>
-          </v-layout>
+          <v-form>
+            <v-text-field
+              label="add review"
+              multi-line
+              v-model="review">
+            </v-text-field>
+            <v-btn small color="danger" @click="addReview(book._id)">Add Review</v-btn>
+          </v-form>
         </v-container>
       </v-layout>
     </v-content>>
@@ -81,12 +73,18 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
-  name: 'questionDetail',
+  name: 'bookdetail',
   data () {
     return {
-      status: false
+      review: '',
+      dialog: false,
+      dialog2: false,
+      dialog3: false,
+      status: false,
+      statusDelete: false
     }
   },
   props: ['id'],
@@ -96,20 +94,52 @@ export default {
     }
   },
   methods: {
+    deleteBook (id) {
+      axios.delete(`http://localhost:3000/book/delete/${id}`, {
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      })
+        .then(response => {
+          this.$router.push('/')
+        })
+        .catch(err => {
+          console.log(err)
+          this.dialog = false
+          this.dialog2 = true
+        })
+    },
+    addReview (id) {
+      axios.post('http://localhost:3000/review/create', {
+        bId: id,
+        content: this.review
+      }, {
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      })
+        .then(response => {
+          this.$store.commit('addAnswer', response.data.data)
+          this.review = ''
+        })
+        .catch(err => {
+          console.log(err)
+          this.dialog3 = true
+          this.review = ''
+        })
+    },
     backToHome () {
       this.$router.push('/')
     },
     toLogin () {
       this.$router.push('/signin')
     },
-    toMyQ () {
-      this.$router.push('/myquestion')
-    },
     signout () {
       this.$store.commit('signout')
     }
   },
   created: function () {
+    this.$store.dispatch('addOneBookFromDB', this.id)
     let status = localStorage.getItem('status')
     if (status === 'connected') {
       this.status = true
