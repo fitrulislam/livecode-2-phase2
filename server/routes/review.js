@@ -1,8 +1,9 @@
 const router = require('express').Router()
-const itemController = require('../controllers/reviewController')
+const reviewController = require('../controllers/reviewController')
+const { auth } = require('../middleware/auth')
 
 router
-  .post('/create', reviewController.create)
+  .post('/create', auth, reviewController.create)
   .get('/read', reviewController.read)
   .delete('/delete/:id', reviewController.delete)
 

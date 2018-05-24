@@ -6,7 +6,6 @@ module.exports = {
       headers: {token: req.headers.token}
     })
       .then(response => {
-        console.log('masuk ke then')
         if (response.data.message === 'silahkan lanjut') {
           next()
         } else {
@@ -16,7 +15,6 @@ module.exports = {
         }
       })
       .catch(err => {
-        console.log('masuk ke catch')
         res.status(500).json({
           message: 'something went wrong'
         })

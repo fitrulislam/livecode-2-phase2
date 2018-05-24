@@ -8,6 +8,7 @@ module.exports = {
     let decoded = jwt.verify(req.headers.token, secret)
     let obj = {
       content: req.body.content,
+      bookId: req.body.bId,
       userId: decoded.id,
       userName: decoded.username,
     }
@@ -62,16 +63,38 @@ module.exports = {
     Review.findByIdAndRemove({
       _id: req.params.id
     })
-    .then(review => {
-      res.status(200).json({
-        message: `review deleted`,
-        data: review
+      .then(data => {
+        Book.findOne({
+          _id: req.body.bId
+        })
+          .then(book => {
+            let newReview = book.reviews.filter(review => review !== req.params.id)
+            Book.update({
+              _id: req.body.bId
+            }, {
+              reviews: newReview
+            })
+              .then(one => {
+                res.status(200).json({
+                  message: 'review deleted'
+                })
+              })
+              .catch(err => {
+                res.status(500).json({
+                  message: 'something went wrong'
+                })
+              })
+          })
+          .catch(err => {
+            res.status(500).json({
+              message: 'something went wrong'
+            })
+          })
       })
-    })
-    .catch(err => {
-      res.status(500).json({
-        message: `server error`
+      .catch(err => {
+        res.status(500).json({
+          message: 'something went wrong'
+        })
       })
-    })
   }
 }
