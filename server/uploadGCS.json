@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "cryptic-genre-200806",
+  "private_key_id": "b927c9459f0e7d365f92e1d602579ce04bb73412",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCNtJsp1XAuN7S2\nZmfWqbnvzfZQSY+SgTEZV/StVj/94TFq70VX6J+qtWspEJkgrAomsBUrLrqofOb5\notHM0mvB++WEnSEavxD/7CycrseLMZUtOvZOp5jDO+apPV6WaKaBVfgoFlo20MQG\nc9Ak1jPm9rp7bz04U/kHEaZjbnGv/eV58Mlu5y9QwxWz8Umf4QFPuwoPfcghtsNb\nCesENXE9W5pyKhLvyNmsQFCn31zHhRwyYXJRubMYCInIsPoqEsjn4BPJpMWNeYS4\n1qV6j4By3GcdBBIlA10NiT72apgDX5e54NwyulqDMOu1l8qZ3NKHcHKVH/RzDIXL\nda1GK6INAgMBAAECggEAK+kPO8Nb47Z3VR4ehzJI37pe3TouNyO5ZzUOKLhVVAJ4\nIb7LKhZ3g5p7/lmaWbl1288sgBkW1ib+G9UMVf/OTGoWESXvoC4cwnEY0eSHCObw\nZveiY3UjrTvemgreSJVdIy7UmvdyNRIz7BvvH7sQkj1aQ+2QdufufvZFLQKIUBRS\n82fPEAwsKY52iTZs7tovjBXrZqxjoZtcO6D76UNOna1cinUv3jVDK6oHXLTi9FcZ\nr/VzmAccJ+23D8YZekfnWgELwDcKavguSRMJY1XiJ5pR2fk94sIWPau5KLctgiZj\n3fXLxg9vszLIjO8xNvpnJBB5RTGpapR/VA2VNEI6MQKBgQDEUlw6ggrHnhYq2H9o\nk6SLCKy5XxqOKsoquIDbTKQnBABkAkPO0gHqygeJNBjf4WadCYX96rIwmhf+PBrX\n+SZoLF6mJcRtPQuCy9nhiC9LN/rXHKsGJyovEAsgtxQ5Pa7+X4Qa5yx0Lylbnppn\nz1CtnU1IRuKl2RdUjDzbCXq4bwKBgQC4yAsfiqVKIMRp4McRVl6rWEhCG/GK+Exg\nrXZCXUTZdvlc9oIlaoHi0h8gNqixH0YAz2q2o+gk3h/BFIN2CmHk+BwOEl6Sej+a\nI22VBeYdKMXpf9RvU2rXKf3n75AtisvnM9Fc2nbiaZRZLqRCsctZORr61gsaTyfY\nCneu98TzQwKBgQCDJM1tXB9dV5JRTsxVjIMXSVUwg4JWw+jG/vc9B4aEdZzZMdYg\nG5OiRxEfq0iOjaCheJIkm5oq81ThxT7dVRc98Z3MeWAs5OGCnzBOA04sfhm3hvQM\nKS95vsrgMMx2rGjwjdfOrOy6NCL5jApzHD81quXMSWXwCgQWu5OPclajSwKBgHu0\nmRXFuUC2TShg7oSh4QEvOjjgAkY6Us/KcUiernA0IV9mPN0Vv9z9NQ9Y6Hij6jay\npcueUdUUzAd0V0pYSw+CNy4IiD3iD+B+ZWeGKndNC6p2BN9+5iEkILL9A/YpXLbt\nTvWt4DdV3ZYTDq8D3pJeE7zoPUigw5jz8Qo3ICiHAoGAcrT4cUh/kA7AUUYKKlNQ\nWQvkrD1QmvXExkqUBQCllkX9pF93jsv/ckV1xq6TSSCrqiWK54IMS1gATmAoXxy0\nDF7VI9TtUOw1HkW2OMf9hnofB5QTAVmeLVwAQp2stgb6W0MmiiuLww66vyXRP1i6\nW42J5USZ31dB96hmAlB+2ww=\n-----END PRIVATE KEY-----\n",
+  "client_email": "ikomers-roarized-com@cryptic-genre-200806.iam.gserviceaccount.com",
+  "client_id": "113419744334166486743",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ikomers-roarized-com%40cryptic-genre-200806.iam.gserviceaccount.com"
+}
